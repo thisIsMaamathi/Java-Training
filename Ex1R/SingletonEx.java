@@ -16,9 +16,9 @@ package Ex1R;
  
  public class SingletonEx{
 	 public static void main(String args[]) {
-//		Singleton t=new Singleton();
+//	Singleton t=new Singleton();
 		 Singleton t= Singleton.getInstance();
-		 
+		 Singleton s1=Singleton.getInstance();
 	 }
  }
 

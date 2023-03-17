@@ -13,11 +13,11 @@ public class PrimenumberList {
 	       { 		  	  
 	          int c=0; 	  
 	          for(num =i; num>=1; num--)
-		  {
+		    {
 	             if(i%num==0) c++;
 		    
-		  }
-		  if (c==2)
+		    }
+		 
 		 
 	
 	       System.out.println(i);

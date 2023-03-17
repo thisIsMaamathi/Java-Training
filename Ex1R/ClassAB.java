@@ -17,6 +17,9 @@ class A{
 }
 
 class C extends A{
+	C(){
+		System.out.println("c called");
+	}
 	B b=new B();
 	
 }
