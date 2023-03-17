@@ -13,7 +13,7 @@ public void mth1()
 public void mth2() {
 	try {
 		int[] a=new int[2];
-		a[5]=12;
+		a[0]=12;
 		return;
 	}
 	catch(Exception e) {System.out.println("catch-mth2");}

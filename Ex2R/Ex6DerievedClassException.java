@@ -12,12 +12,14 @@ class Parent{
 	Parent() throws CloneNotSupportedException {
         throw new CloneNotSupportedException();
     }
+	
 }
 
 class Child extends Parent{
 	Child() {
+		
         try {
-        	super();
+        	Parent p=new Parent();
         }
         catch(CloneNotSupportedException e) {
             System.out.println(e);

@@ -10,7 +10,8 @@ public class Ex3Sample {
 	public void mth2() {
 		try {
 			int[] a=new int[2];
-			a[5]=12;
+			a[0]=12;
+			System.out.println("print bfr exit");
 			System.exit(0);
 			return;
 		}

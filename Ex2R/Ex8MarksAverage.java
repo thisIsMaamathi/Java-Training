@@ -36,8 +36,8 @@ class StudentMarks {
 			
 
 		}
-		System.out.println(sum);
-		System.out.println(sum / 10);
+		//System.out.println(sum);
+		//System.out.println(sum / 10);
 
 		avg = sum / 10;
 		System.out.println("The avg is " + avg);
