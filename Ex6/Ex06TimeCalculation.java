@@ -1,38 +1,41 @@
 package Ex6;
 
+import java.time.DateTimeException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoField;
 import java.time.temporal.WeekFields;
-import java.util.Calendar;
 import java.util.Locale;
 
-public class TravelTimeCalculation {
+public class Ex06TimeCalculation {
 	public static void main(String args[]) {
-
-//driverclass
-		DayCalculation t = new DayCalculation();
-		t.setTimeDuration(100, 101000, "2023-01-24", "20:59:54");
-		double d = t.calcDuration();
-		System.out.println();
-		t.destinationTime(d);
-		System.out.println();
-		t.calculateDate();
-
+		JourneyDestination journey1 = new JourneyDestination();
+		journey1.setTimeDuration(100, 101000, "2023-01-24", "20:59:54");
+		ReportArrivalTime.calculateReachtime(journey1);
 	}
-
 }
 
-class TimeDuration {
+class ReportArrivalTime {
+	public static void calculateReachtime(JourneyDestination spec) {
+		double d = spec.calcDuration();
+		spec.destinationTime(d);
+		spec.calculateDate();
+
+	}
+}
+
+class JourneySpecification {
 	double speed, distance, timeDuration;
 	String startDate, startTime;
 	double reqdDays, reqdHrs, reqdMin;
 	int day, year, hour, minute, second;
 	Month month;
 	LocalDate date;
+	LocalTime localTime;
 
 	// getting parameters and parsing them for use
 
@@ -41,63 +44,69 @@ class TimeDuration {
 		this.distance = distance;
 		this.startDate = startDate;
 		this.startTime = startTime;
-
+        
+		try {
 		date = LocalDate.parse(startDate, DateTimeFormatter.ISO_DATE);
+		localTime = LocalTime.parse(startTime, DateTimeFormatter.ofPattern("HH:mm:ss"));
+		}
+		catch(DateTimeParseException e) { 
+			e.printStackTrace();}
+		catch( DateTimeException e) {
+			   e.printStackTrace();
+		}
+			
+	
 		day = date.getDayOfMonth();
 		month = date.getMonth();
 		year = date.getYear();
-		System.out.println(day + " " + month + " " + year);
+		System.out.print("Journey start time : "+date);
+		//System.out.print("StartTime : "+day + " " + month + " " + year+" ");
 		// String myDateString = "13:24:40";
-		LocalTime localTime = LocalTime.parse(startTime, DateTimeFormatter.ofPattern("HH:mm:ss"));
+		
 		hour = localTime.get(ChronoField.CLOCK_HOUR_OF_DAY);
 		if (hour == 24)
 			hour = 0;
 		minute = localTime.get(ChronoField.MINUTE_OF_HOUR);
 		second = localTime.get(ChronoField.SECOND_OF_MINUTE);
-		System.out.println(hour + " " + minute + " " + second);
+		System.out.println(" " +hour + "hrs " + minute + "min ");
 
 	}
 
-	// calculating total time reqd
 	public double calcDuration() {
+		try {
 		timeDuration = distance / speed;
-
+		}
+		catch(ArithmeticException e) {
+			  e.printStackTrace();
+		}
+		
 		return timeDuration;
 	}
 
-	// calculates no of days hrs and minutes it will take to reach destination
 	public void destinationTime(double timeDuration) {
 		// outputs like 5 days 12hrs 30 mins
 
-		if (timeDuration >= 24) {
-			reqdDays = timeDuration / 24;
+		if (timeDuration >= 8) {
+			reqdDays = timeDuration / 8; // since the driver works for only 8 hrs per day
 			reqdHrs = (reqdDays - Math.floor(reqdDays)) * 24;
 		}
 
 		else {
 			System.out.println(timeDuration);
-			reqdHrs = (timeDuration - Math.floor(timeDuration)) * 24;
+			reqdHrs = (timeDuration - Math.floor(timeDuration)) * 8;
 		}
 
 		reqdMin = (reqdHrs - Math.floor(reqdHrs)) * 60;
-		System.out.println(
-				Math.floor(reqdDays) + " days " + Math.floor(reqdHrs) + " hrs " + Math.floor(reqdMin) + " minutes");
+//		System.out.println(
+//				Math.floor(reqdDays) + " days " + Math.floor(reqdHrs) + " hrs " + Math.floor(reqdMin) + " minutes");
 
 		hour += reqdHrs;
 		minute += reqdMin;
 
 	}
-
 }
 
-//calculates the date it will reach destination
-class DayCalculation extends TimeDuration {
-
-	// add with days 42days 2 hrs 0 mins
-
-	DayCalculation() {
-		System.out.println(day);
-	}
+class JourneyDestination extends JourneySpecification {
 
 	public void calculateDate() {
 		while (reqdDays > 0) {
@@ -118,7 +127,7 @@ class DayCalculation extends TimeDuration {
 			reqdDays--;
 
 		}
-		System.out.println(date + " " + hour + " " + minute);
+		System.out.println("Destination Reach Time :  " + date + " " + hour + "hrs " + minute + "mins ");
 
 	}
 
