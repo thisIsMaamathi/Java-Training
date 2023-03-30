@@ -7,13 +7,13 @@ import java.util.concurrent.Executors;
 
 public class Ex06CharacterThread {
 	public static void main(String args[]) {
-		GetCharacter g=new GetCharacter();
+		GetCharacter getCharacter=new GetCharacter();
 		Scanner sc=new Scanner(System.in);
 		ExecutorService es=Executors.newFixedThreadPool(1);
 	    es.execute(()->{
 		while(true) {
-		char c=sc.next().charAt(0);
-		 g.charPass(c);
+		char character=sc.next().charAt(0);
+		 getCharacter.charPass(character);
 		}
 	    });
 	    es.close();
@@ -24,10 +24,10 @@ public class Ex06CharacterThread {
 
 class GetCharacter{
 	
-	public void charPass(char c) {
+	public void charPass(char character) {
 		try {
-		if (Character.isAlphabetic(c)) 
-			System.out.println(c);
+		if (Character.isAlphabetic(character)) 
+			System.out.println(character);
 		else throw new IllegalArgumentException();
 		
 	

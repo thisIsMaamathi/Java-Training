@@ -6,8 +6,8 @@ public class Ex05ThreadStart extends Thread{
 	   System.out.println("running...");  
 	 }  
 	 public static void main(String args[]){  
-	  Ex05ThreadStart t=new Ex05ThreadStart();
-	  t.start();  
-	  t.start();  
+	  Ex05ThreadStart thread=new Ex05ThreadStart();
+	  thread.start();  
+	  thread.start();  
 	 }  
 	}  

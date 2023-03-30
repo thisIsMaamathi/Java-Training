@@ -8,7 +8,7 @@ import java.util.concurrent.Executors;
 
 public class Ex04DigitalClock {
 	public static void main(String args[]) {
-		Clock c=new Clock();
+		Clock clock=new Clock();
 		
 	    ExecutorService es=Executors.newFixedThreadPool(4);
 	    es.execute(()->{
@@ -16,10 +16,9 @@ public class Ex04DigitalClock {
 	    	 try {
 	    		 while(true) {
 	    			 
-	    		    	Thread.currentThread();
-	    		    	if(c.sec==59) {c.sec=0;c.min++;}
-	    		    	if(c.min==59) {c.min=0;c.hr++;}
-	    		    	c.display();
+	    		        if(clock.sec==59) {clock.sec=0;clock.min++;}
+	    		    	if(clock.min==59) {clock.min=0;clock.hr++;}
+	    		    	clock.display();
 	    		    	
 				       Thread.sleep(1000);
  
@@ -50,12 +49,15 @@ class Clock{
 	
     public void display() {
           sec++;
+          
+          String hour=String.format("%02d",hr);
+          String minute=String.format("%02d",min);
+          String seconds=String.format("%02d",sec);
 
-          if(sec<10) System.out.println(hr+":"+min+":0"+sec);
+          System.out.println(hour+":"+minute+":"+seconds);
           
           
-          else
-          System.out.println(hr+":"+min+":"+sec);
+     
          
      
          

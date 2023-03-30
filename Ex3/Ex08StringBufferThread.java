@@ -18,8 +18,8 @@ public class Ex08StringBufferThread {
 class ThreadClass extends Thread {
 	StringBuffer str;
 
-	public ThreadClass(StringBuffer s) {
-		this.str = s;
+	public ThreadClass(StringBuffer string) {
+		this.str = string;
 	}
 
 	@Override

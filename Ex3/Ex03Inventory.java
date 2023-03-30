@@ -13,7 +13,7 @@ public class Ex03Inventory {
 			int a = 0;
 
 			while (a < 5) {
-				//System.out.println(a);
+				// System.out.println(a);
 				i.addProduct();
 				a++;
 			}
@@ -24,7 +24,7 @@ public class Ex03Inventory {
 			int a = 0;
 			while (a < 5) {
 
-			 // System.out.println(a);
+				// System.out.println(a);
 				i.consumeProduct();
 				a++;
 			}
@@ -47,27 +47,10 @@ class Inventory {
 
 	synchronized void consumeProduct() {
 
- 	   notify();
-       if(count==1) {
-		System.out.println("product Consumed..." + count);
-		count--;
-
-		try {
-			wait();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-       }
-       
-      
-    	  
-	}
-
-	synchronized void addProduct() {
-		notify();
-		if(count==0) {
-			System.out.println("product Added..." + count);
-			count++;
+		if (count == 1) {
+			notify();
+			count--;
+			System.out.println("product Consumed..." + count);
 
 			try {
 				wait();
@@ -75,9 +58,23 @@ class Inventory {
 				e.printStackTrace();
 			}
 		}
-		
-		
-			
+
+	}
+
+	synchronized void addProduct() {
+
+		if (count == 0) {
+			notify();
+			count++;
+			System.out.println("product Added..." + count);
+
+			try {
+				wait();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+
 	}
 
 }

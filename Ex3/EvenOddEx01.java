@@ -4,18 +4,18 @@ import java.util.concurrent.Executors;
 
 public class EvenOddEx01 {
 	public static void main(String[] args) {
-		OddEven o =new OddEven();
+		OddEven oddNum =new OddEven();
 		ExecutorService es=Executors.newFixedThreadPool(2);
 		
 		es.execute(()->{
 			Thread.currentThread().setName("odd");
-			o.odd();
+			oddNum.odd();
 			
 		});
 		es.execute(()->{
 			Thread.currentThread().setName("even");
 			
-			o.even();
+			oddNum.even();
 			
 			
 		});
