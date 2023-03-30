@@ -12,14 +12,14 @@ public class Ex75ImageToByteArray {
 	   public static void main(String args[]) throws Exception{
 		   
 		   FileInputStream fis=new FileInputStream(new File("/Users/maamathikrishnan/Desktop/JavaReference/goldfish.png"));
-		   FileOutputStream fos=new FileOutputStream(new File("/Users/maamathikrishnan/Desktop/JavaReference/goldfishCopy1.png"));
+		   FileOutputStream fos=new FileOutputStream(new File("/Users/maamathikrishnan/Desktop/JavaReference/goldfishCopy12.png"));
 		  
 		   
 		   int c;
 		   while((c=fis.read())!=-1)
 		   {
-		   fos.write(c);
-		   System.out.println("one byte copied");
+			   fos.write(c);
+			   System.out.println("one byte copied");
 		   }
 	     
 	    	System.out.println("File copied");  

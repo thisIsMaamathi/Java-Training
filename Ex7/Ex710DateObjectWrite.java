@@ -12,34 +12,25 @@ import java.util.Date;
 public class Ex710DateObjectWrite {
 
 	public static void main(String args[]) throws IOException {
-		
-	
-		
+
 		File file = new File("/Users/maamathikrishnan/Desktop/JavaReference/DateTimeObj.txt");
-	    file.createNewFile();
-	
+		file.createNewFile();
 
+		FileReader fir = new FileReader(file);
+		FileWriter fw = new FileWriter(file);
+		Date d = new Date();
+		String s = d.toString();
+		fw.write(s);
+		fw.close();
+		int i = 0;
 
-		
-        FileReader fir=new FileReader(file);
-        FileWriter fw=new FileWriter(file);
-        Date d=new Date();
-	    String s=d.toString();
-        fw.write(s);
-        fw.close();
-        int i=0;
-        
-        while((i=fir.read())!=-1)  {
-        	
-        	System.out.print((char)i);
-        	
-        }
-        
-        fir.close();
-        
-        
-        
-        
+		while ((i = fir.read()) != -1) {
+
+			System.out.print((char) i);
+
+		}
+
+		fir.close();
 
 	}
 }
