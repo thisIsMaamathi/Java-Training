@@ -28,7 +28,7 @@ class Car1 {
 
 	}
 
-	 static class CarBuilder {
+	static class CarBuilder {
 
 		// required parameters
 		private String engine;
@@ -48,16 +48,16 @@ class Car1 {
 		}
 
 		public Car1 build() {
-			System.out.println("Building your car. with.."+engine+wheel);
+			System.out.println("Building your car. with.." + engine + wheel);
 			return new Car1(this);
-			
+
 		}
 
 	}
 }
 
-public class BuilderPattern{
+public class BuilderPattern {
 	public static void main(String arg[]) {
-		Car1 Maruti800= new Car1.CarBuilder("1000cc","R14").setMusicSystemEnabled(true).build();
+		Car1 Maruti800 = new Car1.CarBuilder("1000cc", "R14").setMusicSystemEnabled(true).build();
 	}
 }

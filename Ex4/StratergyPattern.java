@@ -1,24 +1,24 @@
 package Ex4;
 
-interface Operation {
+interface OperationStratergy {
 	public int calculate(int num1, int num2);
 }
 
-class Add implements Operation {
+class Add implements OperationStratergy {
 	@Override
 	public int calculate(int num1, int num2) {
 		return num1 + num2;
 	}
 }
 
-class Subtract implements Operation {
+class Subtract implements OperationStratergy {
 	@Override
 	public int calculate(int num1, int num2) {
 		return num1 - num2;
 	}
 }
 
-class Multiply implements Operation {
+class Multiply implements OperationStratergy {
 	@Override
 	public int calculate(int num1, int num2) {
 		// System.out.println("multiplying....");
@@ -27,20 +27,41 @@ class Multiply implements Operation {
 	}
 }
 
+class Context {
+
+	private OperationStratergy operationStratergy;
+
+	public void setOperation(OperationStratergy operationStratergy) {
+		operationStratergy = this.operationStratergy;
+
+	}
+
+	public int executeOperation(int a, int b) {
+		return operationStratergy.calculate(a, b);
+	}
+
+}
+
 public class StratergyPattern {
 
-	// define multiple algorithms and let client(main function) application pass the
-	// algorithm to be used as a parameter
 	public static void main(String[] args) {
+		int num1 = 100, num2 = 20;
+		int stratergy = 1;
+		int result = 0;
 
-		Operation operation = new Add();
-		System.out.println(operation.calculate(10, 5));
+		Context context = new Context();
 
-		Operation operation2 = new Subtract();
-		System.out.println(operation2.calculate(10, 5));
+		if (stratergy == 1)
+			context.setOperation(new Add());
 
-		Operation operation3 = new Multiply();
-		System.out.println(operation3.calculate(10, 5));
+		else if (stratergy == 2)
+			context.setOperation(new Subtract());
+
+		else if (stratergy == 3)
+			context.setOperation(new Multiply());
+
+		result = context.executeOperation(num1, num2);
+		System.out.println(result);
 
 	}
 }

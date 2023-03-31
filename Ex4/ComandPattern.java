@@ -4,15 +4,12 @@ public class ComandPattern {
 
 	public static void main(String args[]) {
 		Addition add = new Addition();
-        Subtraction sub=new Subtraction();
-      
-        
+		Subtraction sub = new Subtraction();
+
 		CalculatorApp calcy = new CalculatorApp();
 
-		calcy.setCommand(1, new AddCommand(add,2,3));
-		calcy.setCommand(2, new SubtractCommand(sub,20,3));
-		
-
+		calcy.setCommand(1, new AddCommand(add, 2, 3));
+		calcy.setCommand(2, new SubtractCommand(sub, 20, 3));
 
 		calcy.executeCommand(2);
 
@@ -73,7 +70,7 @@ class SubtractCommand extends Command {
 	Subtraction sub;
 
 	public SubtractCommand(Subtraction sub, int a, int b) {
-	
+
 		this.a = a;
 		this.b = b;
 		this.sub = sub;
@@ -87,7 +84,6 @@ class SubtractCommand extends Command {
 
 	}
 }
-
 
 class Addition {
 	public void addOperation(Addition add, int a, int b) {
